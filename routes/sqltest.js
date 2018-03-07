@@ -12,10 +12,12 @@ const connection = mysql.createConnection({
   database: 'tanks'
 });
 router.post('/tanks', function(req,res,next) {
-  res.redirect('/');
+  
+/*  
   var param = {"値":"POSTメソッドのリクエストを受け付けました","bodyの値":req.body.card};
     res.header('Content-Type', 'application/json; charset=utf-8')
-      res.send(param);
+//      res.send(param);
+*/
 
  // 接続
   connection.connect();
@@ -25,9 +27,11 @@ router.post('/tanks', function(req,res,next) {
     if (err) { console.log('err: ' + err); } 
 //    connection.query('SHOW COLUMNS FROM tanks;', function (err, rows, fields){
   //    if(err) { console.log('err: ' + err); }
+      let p1=req.query.p1*1;
+      let p2=req.query.p2*1;
       var output = ' ';
-      output = 'name: ' + rows[0].name + 'tankid: ' + rows[0].tankid;
-//      res.send(output);
+      output = 'hp: ' + rows[p1].hp + 'tankid: ' + rows[p2].tankid;
+      res.send(output);
 //    });
   });
 /*
